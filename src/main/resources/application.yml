@@ -1,0 +1,21 @@
+## default, 공통 -------------------------------------------------------------------------------
+
+#java -Dspring.profiles.active=production -jar api-*.*.jar
+#mvn spring-boot:run -Dspring.profiles.active=production
+
+# spring
+spring:
+  application:    name: jap study
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3306/jpa?serverTimezone=Asia/Seoul
+    username: jpa
+    password: jpa
+  jackson:    default-property-inclusion: non-null      
+    time-zone: Asia/Seoul
+    date-format: yyyy-MM-dd HH:mm:ss  jpa:    hibernate:      ddl-auto: create #구동될때마다 새로 스키마 생성, 개발할때만, validate로 사용하는것이 좋음    show-sql: true
+    properties:      hibernate:
+        format_sql: true
+# server
+server:  port: 8080
+  error:    path: /error/info    whitelabel:      enabled: false # 서버 오류 발생시 브라우저에 보여줄 기본 페이지 생성 여부
