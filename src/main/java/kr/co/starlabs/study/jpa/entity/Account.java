@@ -33,6 +33,7 @@ public class Account {
 	@Embedded
 	private Address address;
 
+	//양방향 관계를 정의할때는 관계의 주인의 반대편인 @OneToMany에 mappedBy를 항상 정의해야 한다.
 	@OneToMany(mappedBy = "owner")
 	private Set<Study> studies = new HashSet<>();
 
