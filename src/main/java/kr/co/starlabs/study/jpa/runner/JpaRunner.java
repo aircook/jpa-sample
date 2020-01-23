@@ -71,7 +71,6 @@ public class JpaRunner implements ApplicationRunner {
 		post.addComment(comment2);
 		
 		session.save(post);
-		
 
 	}
 

@@ -22,3 +22,5 @@ server:
     path: /error/info    whitelabel:      enabled: false # 서버 오류 발생시 브라우저에 보여줄 기본 페이지 생성 여부# logging
 logging:  level:    root: info
     kr.co.starlabs.study.jpa: debug
+    org.hibernate.sql: debug
+    org.hibernate.type.descriptor.sql: trace
