@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import kr.co.starlabs.study.jpa.entity.Account;
-import kr.co.starlabs.study.jpa.entity.Address;
+import kr.co.starlabs.study.jpa.model.entity.Account;
+import kr.co.starlabs.study.jpa.model.entity.Address;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -1,4 +1,4 @@
-package kr.co.starlabs.study.jpa.entity;
+package kr.co.starlabs.study.jpa.model.entity;
 
 import java.util.Date;
 

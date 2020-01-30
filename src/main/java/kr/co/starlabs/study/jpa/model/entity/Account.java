@@ -1,6 +1,6 @@
-package kr.co.starlabs.study.jpa.entity;
+package kr.co.starlabs.study.jpa.model.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 public class Account {
@@ -27,8 +27,10 @@ public class Account {
 
 	private Integer age;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created = new Date();
+	//하이버네이트 5.2부터 hibernate-java8 의존성 추가 필요 없이 Java 8 날짜와 시간을 사용할 수 있다.
+	//@Temporal(TemporalType.TIMESTAMP)
+	//@LastModifiedDate
+	private LocalDateTime created = LocalDateTime.now();
 
 	@Embedded
 	private Address address;
@@ -69,11 +71,11 @@ public class Account {
 		this.age = age;
 	}
 
-	public Date getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
