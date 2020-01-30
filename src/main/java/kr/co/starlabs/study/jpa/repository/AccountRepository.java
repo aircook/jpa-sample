@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
 import kr.co.starlabs.study.jpa.model.entity.Account;
 
-public interface AccountRepository extends CrudRepository<Account, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long>, AccountCustomRepository, QuerydslPredicateExecutor<Account>{
 
 	List<Account> findByUsernameAndAgeLessThan(String name, int age);
 
@@ -22,5 +23,6 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 	Page<Account> findAllByOrderByCreatedDesc(Pageable pageable);
 	
 	Page<Account> findAllByOrderByAgeDesc(Pageable pageable);
-	 
+	
+	
 }
