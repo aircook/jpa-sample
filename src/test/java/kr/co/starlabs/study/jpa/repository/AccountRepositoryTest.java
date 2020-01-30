@@ -72,6 +72,9 @@ public class AccountRepositoryTest {
 		String name = "test";
 		
 		List<Account> accounts = accountRepository.findRecentlyRegistered(limit, name);
+		
+		log.debug("accounts is [{}]", accounts);
+		
 		assertThat(accounts).hasSize(0);
 		
 	}

@@ -2,6 +2,7 @@ package kr.co.starlabs.study.jpa.repository;
 
 import java.util.List;
 
+import kr.co.starlabs.study.jpa.model.dto.AccountDto;
 import kr.co.starlabs.study.jpa.model.entity.Account;
 
 //https://noep.github.io/2017/05/03/springboot-querydsl/
@@ -14,5 +15,6 @@ public interface AccountCustomRepository {
 	 * @return
 	 */
 	List<Account> findRecentlyRegistered(int limit, String name);
+
 	
 }

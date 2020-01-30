@@ -14,14 +14,14 @@ public class AccountDto {
 	//@Setter
 	//@AllArgsConstructor
 	@Data
-	public static class List {
+	public static class ListInfo {
 
 		/*
-		public List() {
+		public ListInfo() {
 		
 		}
 		
-		public List(Account account) {
+		public ListInfo(Account account) {
 			this.id = account.getId();
 			this.username = account.getUsername();
 			this.password = account.getPassword();

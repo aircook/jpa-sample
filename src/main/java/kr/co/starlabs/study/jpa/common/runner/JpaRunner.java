@@ -19,6 +19,7 @@ import kr.co.starlabs.study.jpa.model.entity.Study;
 
 @Component
 @Transactional
+//public class JpaRunner implements ApplicationRunner {
 public class JpaRunner implements ApplicationRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(JpaRunner.class);

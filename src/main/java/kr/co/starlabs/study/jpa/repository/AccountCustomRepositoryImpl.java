@@ -18,20 +18,22 @@ public class AccountCustomRepositoryImpl extends QuerydslRepositorySupport imple
 
 	@Override
 	public List<Account> findRecentlyRegistered(int limit, String name) {
-		
-		
+
 		final QAccount account = QAccount.account;
-		
+
 		BooleanBuilder builder = new BooleanBuilder();
-		if (!StringUtils.isEmpty(name)){
+		if (!StringUtils.isEmpty(name)) {
 			builder.and(account.username.contains(name));
 		}
+
+		return from(account)
+				.where(builder)
+				.limit(limit)
+				.orderBy(account.created.desc())
+				.fetch();
 		
-        return from(account)
-        		.where(builder)
-                .limit(limit)
-                .orderBy(account.created.desc())
-                .fetch();
-    }
+		
+		
+	}
 
 }
