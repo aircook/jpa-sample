@@ -1,9 +1,11 @@
 package kr.co.starlabs.study.jpa.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,7 +17,8 @@ public class Comment {
 
 	private String title;
 
-	@ManyToOne
+	//ManyToOne의 기본값은 Eager
+	@ManyToOne(targetEntity = Post.class, fetch = FetchType.LAZY)
 	private Post post;
 
 	public Long getId() {

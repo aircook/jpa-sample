@@ -14,14 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CommentCustomRepositoryImpl extends QuerydslRepositorySupport implements CommentCustomRepository {
-
 	
 	public CommentCustomRepositoryImpl() {
 		super(Comment.class);
 	}
 
 	@Override
-	public List<Tuple> findwithPost() {
+	public List<Tuple> findAllCommentPosts() {
 	
 		JPAQueryFactory queryFactory = new JPAQueryFactory(this.getEntityManager());
 		
@@ -34,7 +33,6 @@ public class CommentCustomRepositoryImpl extends QuerydslRepositorySupport imple
 				.fetch();
 		
 		return result;
-		
 		
 	}
 

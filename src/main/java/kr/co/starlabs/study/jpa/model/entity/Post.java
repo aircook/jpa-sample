@@ -19,6 +19,7 @@ public class Post {
 
 	private String title;
 
+	//OneToMany의 기본값은 Lazy
 	@OneToMany(mappedBy = "post", cascade = CascadeType.PERSIST)
 	private Set<Comment> comments = new HashSet<>();
 

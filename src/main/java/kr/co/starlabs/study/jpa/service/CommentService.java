@@ -2,19 +2,23 @@ package kr.co.starlabs.study.jpa.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Predicate;
 
+import kr.co.starlabs.study.jpa.model.dto.AccountDto;
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
 import kr.co.starlabs.study.jpa.model.entity.Comment;
-import kr.co.starlabs.study.jpa.model.entity.Post;
+import kr.co.starlabs.study.jpa.model.entity.QComment;
 import kr.co.starlabs.study.jpa.repository.CommentRepository;
 import kr.co.starlabs.study.jpa.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CommentService {
 	
-	@Autowired
-	private PostRepository postRepository;
-
 	@Autowired
 	private CommentRepository commentRepository;
 	
@@ -54,9 +55,9 @@ public class CommentService {
     */
     
 	@Transactional(readOnly = true)
-    public List<CommentDto.ListInfo> findAllComments() {
+    public List<CommentDto.ListInfo> findAllCommentsPost() {
 		
-		List<Tuple> posts = commentRepository.findwithPost();
+		List<Tuple> posts = commentRepository.findAllCommentPosts();
 		
 		log.debug("posts is [{}]", posts);
 		
@@ -69,4 +70,46 @@ public class CommentService {
 
 		return result;
     }
+	
+	@Transactional(readOnly = true)
+	public List<CommentDto.Info> findAll() {
+		
+		//return commentRepository.findAll().map(comment -> modelMapper.map(comment, CommentDto.Info.class));
+		
+		List<Comment> comments = commentRepository.findAll();
+		
+		comments.forEach(c -> {
+			log.debug("comment's post title is [{}]", c.getPost().getTitle());
+		});
+				
+		return comments.stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CommentDto.Info> findAllByComments() {
+		
+		Comment comment1 = new Comment();
+		comment1.setId(1L);
+		
+		Comment comment2 = new Comment();
+		comment2.setId(2L);
+
+		//in 연산자를 테스트 해보자.
+		Predicate predicate = QComment.comment
+				.in(comment1, comment2);
+		
+		Iterable<Comment> comments = commentRepository.findAll(predicate);
+		
+		return StreamSupport.stream(comments.spliterator(), false).map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+		
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CommentDto.Info> findByTitle(String title){
+		
+		return commentRepository.findByTitle(title).stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+		
+	}
+	
+	
 }

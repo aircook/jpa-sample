@@ -6,6 +6,6 @@ import com.querydsl.core.Tuple;
 
 public interface CommentCustomRepository {
 
-	List<Tuple> findwithPost();
+	List<Tuple> findAllCommentPosts();
 	
 }

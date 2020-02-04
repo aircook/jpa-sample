@@ -34,7 +34,7 @@ class CommentRepositoryTest {
 		final QPost post = QPost.post;
 
 		
-		List<Tuple> comments = commentRepository.findwithPost();
+		List<Tuple> comments = commentRepository.findAllCommentPosts();
 		
 		log.debug("comments is [{}]", comments);
 		
