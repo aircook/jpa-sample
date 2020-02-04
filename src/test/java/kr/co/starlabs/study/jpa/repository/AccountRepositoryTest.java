@@ -30,7 +30,6 @@ public class AccountRepositoryTest {
 	@Autowired
 	private AccountRepository accountRepository; 
 	
-	/*
 	@Test
 	public void test() {
 		Address address = new Address();
@@ -63,7 +62,6 @@ public class AccountRepositoryTest {
 		Optional<Account> account = accountRepository.findOne(predicate);
 		assertThat(account).isEmpty();
 	}
-	*/
 	
 	@Test
 	public void dslFindAll() {

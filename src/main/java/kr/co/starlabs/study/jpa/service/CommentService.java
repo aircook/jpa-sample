@@ -1,13 +1,11 @@
 package kr.co.starlabs.study.jpa.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,13 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.querydsl.core.Tuple;
 
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
+import kr.co.starlabs.study.jpa.model.entity.Comment;
+import kr.co.starlabs.study.jpa.model.entity.Post;
 import kr.co.starlabs.study.jpa.repository.CommentRepository;
+import kr.co.starlabs.study.jpa.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
 @Slf4j
 public class CommentService {
+	
+	@Autowired
+	private PostRepository postRepository;
 
 	@Autowired
 	private CommentRepository commentRepository;
@@ -29,6 +33,26 @@ public class CommentService {
     @Autowired
     private ModelMapper modelMapper;
 	
+    /* 테스트용 data.sql로 대체
+    @PostConstruct
+    public void initialize() {
+    	
+		Post post = new Post();
+		post.setTitle("글 제목1입니다.");
+		
+		Comment comment1 = new Comment();
+		comment1.setTitle("댓글 1입니다.");
+		post.addComment(comment1);
+		
+		Comment comment2 = new Comment();
+		comment2.setTitle("댓글 2입니다.");
+		post.addComment(comment2);
+		
+		postRepository.save(post);
+    	
+    }
+    */
+    
 	@Transactional(readOnly = true)
     public List<CommentDto.ListInfo> findAllComments() {
 		
