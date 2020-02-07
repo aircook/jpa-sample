@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
-import kr.co.starlabs.study.jpa.model.dto.CommentDto.Info;
 import kr.co.starlabs.study.jpa.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,11 +33,7 @@ public class CommentController {
 	@GetMapping(value = "/t2")
 	public ResponseEntity<List<CommentDto.Info>> getAll() {
 		
-		log.debug("find all test 시작.");
-		
 		List<CommentDto.Info> result = commentService.findAll();
-		
-		log.debug("result is [{}]", result);
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
@@ -53,9 +48,18 @@ public class CommentController {
 	}
 	
 	@GetMapping(value = "/t4")
-	public ResponseEntity<List<CommentDto.Info>> findByTitle(@RequestParam String title){
+	public ResponseEntity<List<CommentDto.Info1>> findByTitle(@RequestParam String title){
 		
-		List<CommentDto.Info> result = commentService.findByTitle(title);
+		List<CommentDto.Info1> result = commentService.findByTitle(title);
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value = "/t5")
+	public ResponseEntity<List<CommentDto.Info>> findAllBySubQuery(@RequestParam String title){
+		
+		List<CommentDto.Info> result = commentService.findAllBySubQuery(title);
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
 		

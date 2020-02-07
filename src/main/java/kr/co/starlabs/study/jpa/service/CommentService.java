@@ -2,27 +2,29 @@ package kr.co.starlabs.study.jpa.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 
-import kr.co.starlabs.study.jpa.model.dto.AccountDto;
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
 import kr.co.starlabs.study.jpa.model.entity.Comment;
 import kr.co.starlabs.study.jpa.model.entity.QComment;
 import kr.co.starlabs.study.jpa.repository.CommentRepository;
-import kr.co.starlabs.study.jpa.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Comment 서비스 레이어
+ * <p>기본적인 전략은 repository 객체에서 entity를 리턴하고 service에서 dto로 변환한다.
+ * @author Francis Lee (yhlee@starlabs.co.kr)
+ *
+ */
 @Service
 @Transactional
 @Slf4j
@@ -81,7 +83,8 @@ public class CommentService {
 		comments.forEach(c -> {
 			log.debug("comment's post title is [{}]", c.getPost().getTitle());
 		});
-				
+		
+		//ModelMapper는 기본생성자를 필요로 한다.CommentDto.Info 에 기본생성자가 정의되어 있어야 한다.
 		return comments.stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
 	}
 	
@@ -105,11 +108,26 @@ public class CommentService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<CommentDto.Info> findByTitle(String title){
+	public List<CommentDto.Info1> findByTitle(String title){
 		
-		return commentRepository.findByTitle(title).stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+		//return commentRepository.findByTitle(title).stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+		
+		//이걸 잘보면 repository에서 entity가 아닌 dto를 바로 리턴하게 만들었다. 근데 리턴받을 타입클래스의 기본생성자가 있으면 동작하지 않는다.
+		//return commentRepository.findByTitle(title);
+		
+		return commentRepository.findByTitle(title, CommentDto.Info1.class);
 		
 	}
+	
+	@Transactional(readOnly = true)
+	public List<CommentDto.Info> findAllBySubQuery(String title){
+		
+		return commentRepository.findAllBySubQuery(title);
+		
+	}
+	
+	
+	
 	
 	
 }

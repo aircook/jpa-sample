@@ -17,9 +17,16 @@ INSERT INTO `car` (`id`, `make`, `number_of_seats`, `type`) VALUES
     (3, 'HYUNDAI', 5, 'C');
 
 INSERT INTO `post` (`id`, `title`) VALUES
-    (1, 'I dont like this article.');
+    (1, 'Microsoft'),
+    (2, 'Google'),
+    (3, 'Apple');
     
 INSERT INTO `comment` (`id`, `title`, `post_id`) VALUES
-    (1, 'Me too', 1),
-    (2, 'As You wish.', 1),
-    (3, 'So Be It.', 1);
+    (1, 'Excel', 1),
+    (2, 'Word', 1),
+    (3, 'PowerPoint', 1),
+    (4, 'Gmail', 2),
+    (5, 'Photo', 2),
+    (6, 'Driver', 2),
+    (7, 'KeyNote', 3),
+    (8, 'AppStore', 3);
