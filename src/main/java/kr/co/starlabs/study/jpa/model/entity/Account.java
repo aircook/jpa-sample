@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.annotation.LastModifiedDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Account {
@@ -24,6 +24,7 @@ public class Account {
 	@Column(nullable = false)
 	private String username;
 
+	@JsonIgnore
 	private String password;
 
 	private Integer age;
