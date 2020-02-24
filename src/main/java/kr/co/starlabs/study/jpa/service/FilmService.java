@@ -15,7 +15,7 @@ import kr.co.starlabs.study.jpa.model.entity.Film;
 import kr.co.starlabs.study.jpa.repository.FilmRepository;
 import lombok.extern.slf4j.Slf4j;
 
-// Controller <- DTO -> Service <- Entity -> Repository
+// Controller <- [DTO] -> Service <- [Entity] -> Repository
 @Service
 @Transactional
 @Slf4j
@@ -83,6 +83,12 @@ public class FilmService {
 			//return film;
 			return modelMapper.map(film, FilmDto.Read.class);
 		});		
+		
+		//아래처럼 Servie layer에서 검증하는 코드로 수정해야 것다.
+		//Film film = filmRepository.findById(update.getId()).orElseThrow(() -> new RuntimeException());
+		//film.setTitle(update.getTitle());
+		//return modelMapper.map(film, FilmDto.Read.class);
+		
 		
 		log.debug("result is [{}]", result);
 		return result;

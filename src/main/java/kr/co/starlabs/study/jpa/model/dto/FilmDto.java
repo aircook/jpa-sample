@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+import kr.co.starlabs.study.jpa.model.type.LanguageType;
 import lombok.Data;
 
 //@Getter
@@ -20,11 +21,11 @@ public class FilmDto {
 
 		private String director;
 
-		private String language;
+		//private String language;
+		private LanguageType language;
 
 		private Integer time;
 
-		//@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 		private LocalDate released;
 
 		private LocalDateTime created;
@@ -38,7 +39,8 @@ public class FilmDto {
 
 		private String director;
 
-		private String language;
+		//private String language;
+		private LanguageType language;
 
 		private Integer time;
 		
@@ -55,7 +57,8 @@ public class FilmDto {
 
 		private String director;
 
-		private String language;
+		//private String language;
+		private LanguageType language;
 
 		private Integer time;
 		
