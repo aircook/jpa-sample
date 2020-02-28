@@ -5,7 +5,7 @@ import javax.persistence.Converter;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Converter
+@Converter(autoApply = true)
 @Slf4j
 public class LanguageTypeConverter implements AttributeConverter<LanguageType, String> {
 

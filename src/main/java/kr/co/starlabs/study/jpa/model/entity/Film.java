@@ -54,5 +54,8 @@ public class Film {
 	
 	private LocalDateTime created;
 	
+	//Camel로 작성하면 데이터베이스에서는 Snake로 자동으로 바뀐다.
+	private String genreType;
+	
 
 }
