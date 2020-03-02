@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
+import kr.co.starlabs.study.jpa.model.dto.CommentDto.Info;
 import kr.co.starlabs.study.jpa.model.entity.Comment;
 import kr.co.starlabs.study.jpa.model.entity.QComment;
 import kr.co.starlabs.study.jpa.repository.CommentRepository;
@@ -124,6 +126,12 @@ public class CommentService {
 		
 		return commentRepository.findAllBySubQuery(title);
 		
+	}
+
+	public List<Info> findAll(Pageable pageable) {
+		
+		return commentRepository.findAllByPageable(pageable).stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
+		//return commentRepository.findAll(pageable).stream().map(c -> modelMapper.map(c, CommentDto.Info.class)).collect(Collectors.toList());
 	}
 	
 	

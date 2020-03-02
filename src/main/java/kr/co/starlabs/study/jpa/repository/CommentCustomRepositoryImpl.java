@@ -2,11 +2,13 @@ package kr.co.starlabs.study.jpa.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
@@ -66,6 +68,17 @@ public class CommentCustomRepositoryImpl extends QuerydslRepositorySupport imple
 
 		return result;
 
+	}
+
+	@Override
+	public List<Comment> findAllByPageable(Pageable pageable) {
+		
+		final QComment comment = QComment.comment;
+		
+		final JPQLQuery<Comment> query = from(comment).orderBy(comment.id.desc());
+		
+		return getQuerydsl().applyPagination(pageable, query).fetch();
+		
 	}
 
 }

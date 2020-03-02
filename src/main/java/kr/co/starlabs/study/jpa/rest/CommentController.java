@@ -3,6 +3,7 @@ package kr.co.starlabs.study.jpa.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class CommentController {
 	}
 	
 	@GetMapping(value = "/t4")
-	public ResponseEntity<List<CommentDto.Info1>> findByTitle(@RequestParam String title){
+	public ResponseEntity<List<CommentDto.Info1>> getAllByTitle(@RequestParam String title){
 		
 		List<CommentDto.Info1> result = commentService.findByTitle(title);
 		
@@ -57,9 +58,19 @@ public class CommentController {
 	}
 	
 	@GetMapping(value = "/t5")
-	public ResponseEntity<List<CommentDto.Info>> findAllBySubQuery(@RequestParam String title){
+	public ResponseEntity<List<CommentDto.Info>> getAllBySubQuery(@RequestParam String title){
 		
 		List<CommentDto.Info> result = commentService.findAllBySubQuery(title);
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
+		
+	}
+	
+	//?page=0&size=5
+	@GetMapping(value = "/t6")
+	public ResponseEntity<List<CommentDto.Info>> getAll(Pageable pageable){
+		
+		List<CommentDto.Info> result = commentService.findAll(pageable);
 		
 		return new ResponseEntity<>(result, HttpStatus.OK);
 		
