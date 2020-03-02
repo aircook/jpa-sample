@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import com.querydsl.core.Query;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
@@ -75,10 +77,15 @@ public class CommentCustomRepositoryImpl extends QuerydslRepositorySupport imple
 		
 		final QComment comment = QComment.comment;
 		
-		final JPQLQuery<Comment> query = from(comment).orderBy(comment.id.desc());
+		//final JPQLQuery<Comment> query = from(comment).orderBy(comment.id.desc());
+		//return getQuerydsl().applyPagination(pageable, query).fetch();
 		
-		return getQuerydsl().applyPagination(pageable, query).fetch();
-		
+		//select comment0_.id as id1_2_, comment0_.post_id as post_id3_2_, comment0_.title as title2_2_ from comment comment0_ order by comment0_.id desc limit ?
+	
+		JPAQueryFactory queryFactory = new JPAQueryFactory(this.getEntityManager());
+		//JPAQuery<Comment> jpaQuery = queryFactory.selectFrom(comment).offset(pageable.getOffset()).limit(pageable.getPageSize()).orderBy(comment.id.desc());
+		//return jpaQuery.fetch();
+		return queryFactory.selectFrom(comment).offset(pageable.getOffset()).limit(pageable.getPageSize()).orderBy(comment.id.desc()).fetch();
 	}
 
 }
