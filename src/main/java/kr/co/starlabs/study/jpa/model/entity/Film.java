@@ -36,8 +36,8 @@ public class Film {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false, length = 500)
-	private String director;
+	@Column(nullable = false)
+	private Long directorId;
 
 	//private String language;
 	//@Enumerated(EnumType.STRING)
@@ -55,7 +55,7 @@ public class Film {
 	private LocalDateTime created;
 	
 	//Camel로 작성하면 데이터베이스에서는 Snake로 자동으로 바뀐다.
-	private String genreType;
+	//private String genreType;
 	
 
 }

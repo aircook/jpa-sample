@@ -58,7 +58,7 @@ public class FilmService {
 		*/
 		Film film = new Film();
 		film.setTitle(insert.getTitle());
-		film.setDirector(insert.getDirector());
+		film.setDirectorId(insert.getDirectorId());
 		film.setLanguage(insert.getLanguage());
 		film.setTime(insert.getTime());
 		film.setReleased(insert.getReleased());
@@ -75,7 +75,7 @@ public class FilmService {
 		Optional<FilmDto.Read> result = 	
 		filmRepository.findById(update.getId()).map(film -> {
 			film.setTitle(update.getTitle());
-			film.setDirector(update.getDirector());
+			film.setDirectorId(update.getDirectorId());
 			film.setLanguage(update.getLanguage());
 			film.setTime(update.getTime());
 			film.setReleased(update.getReleased());

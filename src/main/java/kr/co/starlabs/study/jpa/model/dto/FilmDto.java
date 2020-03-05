@@ -19,7 +19,7 @@ public class FilmDto {
 
 		private String title;
 
-		private String director;
+		private Long directorId;
 
 		//private String language;
 		private LanguageType language;
@@ -37,7 +37,7 @@ public class FilmDto {
 
 		private String title;
 
-		private String director;
+		private Long directorId;
 
 		//private String language;
 		private LanguageType language;
@@ -55,7 +55,7 @@ public class FilmDto {
 
 		private String title;
 
-		private String director;
+		private Long directorId;
 
 		//private String language;
 		private LanguageType language;

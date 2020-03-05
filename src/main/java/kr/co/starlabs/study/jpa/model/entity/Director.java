@@ -13,7 +13,7 @@ import lombok.Data;
 //Camel로 작성하면 데이터베이스에서는 Snake로 자동으로 바뀐다. --> create table film_director
 @Entity
 @Data
-public class FilmDirector {
+public class Director {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
