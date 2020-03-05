@@ -14,7 +14,7 @@ spring:
     initialization-mode: always
   jackson:    default-property-inclusion: non-null      
     time-zone: Asia/Seoul
-    date-format: yyyy-MM-dd HH:mm:ss  jpa:    hibernate:      ddl-auto: update #create: 구동될때마다 새로 스키마 생성 개발용,  update: 데이터유지를 위해서 개발용,  validate로 사용하는것이 좋음    show-sql: true
+    date-format: yyyy-MM-dd HH:mm:ss  jpa:    hibernate:      ddl-auto:  update #create: 구동될때마다 새로 스키마 생성 개발용,  update: 데이터유지를 위해서 개발용,  validate로 사용하는것이 좋음    show-sql: true
     properties:      hibernate:
         format_sql: true
     #database: mysql    

@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +33,7 @@ public class FilmController {
 	// example : http://localhost:8080/films?page=0&size=5&sort=id,asc
 	// example : http://localhost:8080/films?page=1&size=5&sort=director,asc
 	@GetMapping(value = "")
-	public ResponseEntity<Page<FilmDto.Read>> list(Pageable pageable) {
+	public ResponseEntity<Page<FilmDto.Read>> list(@PageableDefault(size=20, sort="director", direction = Direction.ASC) Pageable pageable) {
 		log.debug("pageable is [{}]", pageable);
 		Page<FilmDto.Read> films = filmService.findAll(pageable);
 		// return new ResponseEntity<>(result.getContent(), HttpStatus.OK);

@@ -25,7 +25,8 @@ INSERT INTO `car` (`id`, `make`, `number_of_seats`, `type`) VALUES
 INSERT INTO `post` (`id`, `title`) VALUES
     (1, 'Microsoft'),
     (2, 'Google'),
-    (3, 'Apple');
+    (3, 'Apple'),
+    (4, 'Apple');
     
 INSERT INTO `comment` (`id`, `title`, `post_id`) VALUES
     (1, 'Excel', 1),
