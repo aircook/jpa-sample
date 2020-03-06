@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import kr.co.starlabs.study.jpa.model.entity.Account;
 
-public interface AccountRepository extends JpaRepository<Account, Long>, AccountCustomRepository, QuerydslPredicateExecutor<Account>{
+public interface AccountRepository extends JpaRepository<Account, Long>, AccountRepositoryOverride, QuerydslPredicateExecutor<Account>{
 
 	List<Account> findByUsernameAndAgeLessThan(String name, int age);
 

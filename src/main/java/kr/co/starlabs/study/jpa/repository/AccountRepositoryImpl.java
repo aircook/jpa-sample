@@ -3,6 +3,7 @@ package kr.co.starlabs.study.jpa.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.util.StringUtils;
 
 import com.querydsl.core.BooleanBuilder;
@@ -10,9 +11,10 @@ import com.querydsl.core.BooleanBuilder;
 import kr.co.starlabs.study.jpa.model.entity.Account;
 import kr.co.starlabs.study.jpa.model.entity.QAccount;
 
-public class AccountCustomRepositoryImpl extends QuerydslRepositorySupport implements AccountCustomRepository {
+@NoRepositoryBean
+public class AccountRepositoryImpl extends QuerydslRepositorySupport implements AccountRepositoryOverride {
 
-	public AccountCustomRepositoryImpl() {
+	public AccountRepositoryImpl() {
 		super(Account.class);
 	}
 

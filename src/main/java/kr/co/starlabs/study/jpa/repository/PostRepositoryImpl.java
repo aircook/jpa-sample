@@ -13,9 +13,9 @@ import kr.co.starlabs.study.jpa.model.entity.Post;
 import kr.co.starlabs.study.jpa.model.entity.QComment;
 import kr.co.starlabs.study.jpa.model.entity.QPost;
 
-public class PostCustomRepositoryImpl extends QuerydslRepositorySupport implements PostCustomRepository {
+public class PostRepositoryImpl extends QuerydslRepositorySupport implements PostRepositoryOverride {
 
-	public PostCustomRepositoryImpl() {
+	public PostRepositoryImpl() {
 		super(Post.class);
 	}
 	

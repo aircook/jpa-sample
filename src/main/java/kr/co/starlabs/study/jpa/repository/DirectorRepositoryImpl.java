@@ -15,9 +15,9 @@ import kr.co.starlabs.study.jpa.model.entity.Director;
 import kr.co.starlabs.study.jpa.model.entity.QDirector;
 import kr.co.starlabs.study.jpa.model.entity.QFilm;
 
-public class DirectorCustomRepositoryImpl extends QuerydslRepositorySupport implements DirectorCustomRepository {
+public class DirectorRepositoryImpl extends QuerydslRepositorySupport implements DirectorRepositoryOverride {
 
-	public DirectorCustomRepositoryImpl() {
+	public DirectorRepositoryImpl() {
 		super(Director.class);
 	}
 	

@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.querydsl.core.Tuple;
 
-public interface PostCustomRepository {
+public interface DirectorRepositoryOverride {
 
-	List<String> findAllPostWithCommentCount();
+	List<Tuple> findAllDirectorWithFilmCount();
 	
 }

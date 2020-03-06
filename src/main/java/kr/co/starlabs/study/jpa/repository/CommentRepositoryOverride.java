@@ -9,7 +9,7 @@ import com.querydsl.core.Tuple;
 import kr.co.starlabs.study.jpa.model.dto.CommentDto;
 import kr.co.starlabs.study.jpa.model.entity.Comment;
 
-public interface CommentCustomRepository {
+public interface CommentRepositoryOverride {
 
 	List<Tuple> findAllCommentPosts();
 	

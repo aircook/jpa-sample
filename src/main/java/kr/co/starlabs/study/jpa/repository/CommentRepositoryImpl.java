@@ -21,9 +21,9 @@ import kr.co.starlabs.study.jpa.model.entity.QPost;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CommentCustomRepositoryImpl extends QuerydslRepositorySupport implements CommentCustomRepository {
+public class CommentRepositoryImpl extends QuerydslRepositorySupport implements CommentRepositoryOverride {
 
-	public CommentCustomRepositoryImpl() {
+	public CommentRepositoryImpl() {
 		super(Comment.class);
 	}
 
