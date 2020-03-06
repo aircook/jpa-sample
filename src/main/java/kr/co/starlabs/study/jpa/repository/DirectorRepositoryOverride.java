@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.querydsl.core.Tuple;
 
+import kr.co.starlabs.study.jpa.model.dto.DirectorDto.Read;
+
 public interface DirectorRepositoryOverride {
 
-	List<Tuple> findAllDirectorWithFilmCount();
+	List<Read> findAllDirectorWithFilmCount();
 	
 }

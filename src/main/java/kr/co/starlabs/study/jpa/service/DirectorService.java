@@ -1,30 +1,16 @@
 package kr.co.starlabs.study.jpa.service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Predicate;
-
-import kr.co.starlabs.study.jpa.model.dto.CommentDto;
-import kr.co.starlabs.study.jpa.model.dto.CommentDto.Info;
 import kr.co.starlabs.study.jpa.model.dto.DirectorDto;
-import kr.co.starlabs.study.jpa.model.entity.Comment;
+import kr.co.starlabs.study.jpa.model.dto.DirectorDto.Read;
 import kr.co.starlabs.study.jpa.model.entity.Director;
-import kr.co.starlabs.study.jpa.model.entity.QComment;
-import kr.co.starlabs.study.jpa.repository.CommentRepository;
 import kr.co.starlabs.study.jpa.repository.DirectorRepository;
-import kr.co.starlabs.study.jpa.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -45,24 +31,27 @@ public class DirectorService {
 	@Transactional(readOnly = true)
     public List<DirectorDto.Read> findAllDirectorWithFilmCount() {
 		
-		List<Tuple> directors = directorRepository.findAllDirectorWithFilmCount();
+		List<Read> directors = directorRepository.findAllDirectorWithFilmCount();
 		
 		log.debug("directors is [{}]", directors);
 		
-		List<DirectorDto.Read> result = new ArrayList<>();
+		return directors;
 		
-		directors.stream().forEach(d -> {
-			log.debug("d is [{}]", d);
-			
-			
-			Director director = d.get(0, Director.class);
-			
-			DirectorDto.Read info = new DirectorDto.Read(
-					director.getId(),
-					director.getName(),
-					director.getBirthDate(),
-					director.getCreated(),
-					d.get(1, Long.class));
+		
+//		List<DirectorDto.Read> result = new ArrayList<>();
+//		
+//		directors.stream().forEach(d -> {
+//			log.debug("d is [{}]", d);
+//			
+//			
+//			Director director = d.get(0, Director.class);
+//			
+//			DirectorDto.Read info = new DirectorDto.Read(
+//					director.getId(),
+//					director.getName(),
+//					director.getBirthDate(),
+//					director.getCreated(),
+//					d.get(1, Long.class));
 			
 //			DirectorDto.Read info = new DirectorDto.Read(
 //					d.get(0, Long.class),
@@ -71,10 +60,10 @@ public class DirectorService {
 //					d.get(3, LocalDateTime.class),
 //					d.get(4, Long.class));
 			
-			result.add(info);
-		});
+//			result.add(info);
+//		});
 
-		return result;
+//		return result;
     }
 	
 }

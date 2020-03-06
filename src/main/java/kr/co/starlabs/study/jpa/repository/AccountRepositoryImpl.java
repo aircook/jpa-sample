@@ -11,7 +11,7 @@ import com.querydsl.core.BooleanBuilder;
 import kr.co.starlabs.study.jpa.model.entity.Account;
 import kr.co.starlabs.study.jpa.model.entity.QAccount;
 
-@NoRepositoryBean
+//@NoRepositoryBean --> 이거 사용하니 AccountRepository Bean이 생성이 안되네.. 아직 이유를 모르겠다.
 public class AccountRepositoryImpl extends QuerydslRepositorySupport implements AccountRepositoryOverride {
 
 	public AccountRepositoryImpl() {
