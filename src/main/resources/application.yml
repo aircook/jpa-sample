@@ -18,7 +18,11 @@ spring:
     properties:      hibernate:
         format_sql: true
     #database: mysql    
-  #output:    #ansi:      #enabled: always# server
+  #output:    #ansi:      #enabled: always  redis:    lettuce:      pool:        max-active: 10
+        max-idle: 10
+        min-idle: 2
+    port: 6379
+    host: 192.168.99.100# server
 server:
   port: 8080  error:
     path: /error/info    whitelabel:      enabled: false # 서버 오류 발생시 브라우저에 보여줄 기본 페이지 생성 여부# logging

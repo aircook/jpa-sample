@@ -99,6 +99,7 @@ public class FilmService {
 		log.debug("id is [{}]", id);
 		//this.findById(id).ifPresent(film -> filmRepository.delete(modelMapper.map(film, Film.class)));
 		filmRepository.findById(id).ifPresent(film -> filmRepository.delete(film));
+		//filmRepository.deleteById(id);
 	}
 	
 }
