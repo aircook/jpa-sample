@@ -4,12 +4,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Configuration
+@EnableCaching
 public class ApplicationConfig {
 
     @Bean

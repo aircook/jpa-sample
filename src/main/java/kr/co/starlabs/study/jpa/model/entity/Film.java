@@ -1,5 +1,6 @@
 package kr.co.starlabs.study.jpa.model.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

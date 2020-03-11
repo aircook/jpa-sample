@@ -1,5 +1,6 @@
 package kr.co.starlabs.study.jpa.model.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,7 +14,7 @@ import lombok.Data;
 public class FilmDto {
 
 	@Data
-	public static class Read {
+	public static class Read implements Serializable {
 
 		private Long id;
 

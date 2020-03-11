@@ -14,7 +14,8 @@ spring:
     initialization-mode: always
   jackson:    default-property-inclusion: non-null      
     time-zone: Asia/Seoul
-    date-format: yyyy-MM-dd HH:mm:ss  jpa:    hibernate:      ddl-auto:  update #create: 구동될때마다 새로 스키마 생성 개발용,  update: 데이터유지를 위해서 개발용,  validate로 사용하는것이 좋음    show-sql: true
+    date-format: yyyy-MM-dd HH:mm:ss  jpa:    hibernate:      ddl-auto: update #create: 구동될때마다 새로 스키마 생성 개발용,  update: 데이터유지를 위해서 개발용,  validate로 사용하는것이 좋음
+    show-sql: true
     properties:      hibernate:
         format_sql: true
     #database: mysql    
@@ -22,7 +23,8 @@ spring:
         max-idle: 10
         min-idle: 2
     port: 6379
-    host: 192.168.99.100# server
+    host: 192.168.99.100  cache:    type: redis
+    redis:      time-to-live: 600000 # -->10 minutes# server
 server:
   port: 8080  error:
     path: /error/info    whitelabel:      enabled: false # 서버 오류 발생시 브라우저에 보여줄 기본 페이지 생성 여부# logging
@@ -30,3 +32,4 @@ logging:  level:    root: info
     kr.co.starlabs.study.jpa: debug
     org.hibernate.sql: debug
     org.hibernate.type.descriptor.sql: trace
+    org.springframework.cache: trace

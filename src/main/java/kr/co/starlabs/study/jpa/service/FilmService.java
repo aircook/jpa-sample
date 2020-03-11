@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,7 @@ public class FilmService {
     private ModelMapper modelMapper;
 	
 	@Transactional(readOnly = true)
+	@Cacheable(value = "films")
     public Page<FilmDto.Read> findAll(Pageable pageable) {
         //model mapper 이용
 		Page<FilmDto.Read> result = filmRepository.findAll(pageable).map(film -> modelMapper.map(film, FilmDto.Read.class));
@@ -36,6 +40,7 @@ public class FilmService {
     }
 	
 	@Transactional(readOnly = true)
+	@Cacheable(value = "films", key = "#id")
 	public Optional<FilmDto.Read> findById(Long id){
 		//optinal 객체애 대한 처리는 어디서?
 		Optional<FilmDto.Read> result = filmRepository.findById(id).map(film -> modelMapper.map(film, FilmDto.Read.class));
@@ -44,6 +49,7 @@ public class FilmService {
 	}
 	
 	//DTO의 값을 ENTITY 객체를 만든다음 저장
+	@CachePut(value = "films", key = "#id")
 	public FilmDto.Read add(FilmDto.Insert insert) {
 		log.debug("insert is [{}]", insert);
 		/*
@@ -70,6 +76,7 @@ public class FilmService {
 	}
 	
 	//Entity 객체를 가져온 다음 DTO의 값을 대입
+	@CachePut(value = "films", key = "#id")
 	public Optional<FilmDto.Read> edit(FilmDto.Update update) {
 		log.debug("update is [{}]", update);
 		Optional<FilmDto.Read> result = 	
@@ -94,7 +101,7 @@ public class FilmService {
 		return result;
 	}
 	
-	
+	@CacheEvict(value = "films", allEntries = true)
 	public void remove(Long id) {
 		log.debug("id is [{}]", id);
 		//this.findById(id).ifPresent(film -> filmRepository.delete(modelMapper.map(film, Film.class)));
